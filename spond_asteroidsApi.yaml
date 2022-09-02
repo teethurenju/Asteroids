@@ -1,0 +1,86 @@
+swagger: '2.0'
+info:
+  description: Api Documentation
+  version: '1.0'
+  title: Api Documentation
+  termsOfService: urn:tos
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+host: localhost:8080
+schemes:
+- "https"
+- "http"
+basePath: /v1/spondAsteroidsApi
+tags:
+  - name: asteroids-controller
+    description: Asteroids Controller
+  - name: basic-error-controller
+    description: Basic Error Controller
+paths:
+  /nearAsteroids/{startDate}/{endDate}:
+    get:
+      tags:
+        - asteroids-controller
+      summary: getAsteroids
+      operationId: getAsteroidsUsingGET
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: startDate
+          in: path
+          description: startDate
+          required: true
+          type: string
+        - name: endDate
+          in: path
+          description: endDate
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          type: string  
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /largeAsteroid/{year}:
+    get:
+      tags:
+        - asteroids-controller
+      summary: getLargeAsteroidsDetails
+      operationId: getLargeAsteroidsDetailsUsingGET
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: year
+          in: path
+          description: year
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          type: string  
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
